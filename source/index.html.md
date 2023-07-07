@@ -6,6 +6,8 @@ language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of
   - ruby
   - python
   - javascript
+  - csharp
+  - cpp
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -75,7 +77,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 ##S1F0 Not On Line
 
 ##S1F1 Are You There?
-'''C#
+```csharp
     // S1F1R C# Receive message - add next line to setup
     //sp is a SecsPort or SecsHost object reference
     sp.MessageTypeAdd( 1, 1, new SecsMsgReceiveDelegate(recv_S1F1R));
@@ -95,7 +97,7 @@ void recv_S1F1R(object sender, int stream, int function, bool send_reply, int tr
         } // end while(ok)
     } // end recv_S1F1R
 
-'''C++
+```cpp
 using namespace std;
 
     // S1F1R C++ Receive message - add next line to setup
