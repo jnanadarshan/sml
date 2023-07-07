@@ -96,6 +96,7 @@ void recv_S1F1R(object sender, int stream, int function, bool send_reply, int tr
         return; 
         } // end while(ok)
     } // end recv_S1F1R
+```
 
 ```cpp
 using namespace std;
@@ -116,6 +117,7 @@ void recvS1F1R(SecsEquipCpp sp, int stream, int function, bool sendReply, int tr
         return; 
         } // end while(ok)
     } // end recv_S1F1R
+```
 
 # Kittens
 
