@@ -70,6 +70,50 @@ Kittn expects for the API key to be included in all API requests to the server i
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
+#S1 - Tool Status
+
+##S1F0 Not On Line
+
+##S1F1 Are You There?
+'''C#
+    // S1F1R C# Receive message - add next line to setup
+    //sp is a SecsPort or SecsHost object reference
+    sp.MessageTypeAdd( 1, 1, new SecsMsgReceiveDelegate(recv_S1F1R));
+
+// receive method 
+void recv_S1F1R(object sender, int stream, int function, bool send_reply, int transID, string TSN_data, string header) {
+    //SecsPort sp = (SecsPort)sender;
+    //SecsHost sp = (SecsHost)sender;
+    bool ok=true;
+    while (ok) {   // break out of loop on error
+        // no data expected
+        if (send_reply) {
+            string reply; // TBD create reply
+            sp.SendReply(1, 2, transID, reply);
+            }
+        return; 
+        } // end while(ok)
+    } // end recv_S1F1R
+
+'''C++
+using namespace std;
+
+    // S1F1R C++ Receive message - add next line to setup
+    sp->messageTypeAdd( 1, 1, ::recvS1F1R);
+
+// receive method 
+void recvS1F1R(SecsEquipCpp sp, int stream, int function, bool sendReply, int transID, const char *TSN_data, const char *header, void *clientData) {
+    //change SecsEquipCpp above to SecsHostCpp for host receive
+    bool ok=true;
+    while (ok) {   // break out of loop on error
+        // no data expected
+        if (sendReply) {
+            string reply; // TBD create reply
+            sp->sendReply(1, 2, transID, reply.c_str());
+            }
+        return; 
+        } // end while(ok)
+    } // end recv_S1F1R
 
 # Kittens
 
