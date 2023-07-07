@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;,&quot;csharp&quot;,&quot;cpp&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -309,6 +309,8 @@
               <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
               <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="csharp">csharp</a>
+              <a href="#" data-language-name="cpp">cpp</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -329,14 +331,6 @@
                   </li>
                   <li>
                     <a href="#s1f1-are-you-there" class="toc-h2 toc-link" data-title="S1F1 Are You There?">S1F1 Are You There?</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
                   </li>
                   <li>
                     <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
@@ -394,50 +388,54 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
-<h1 id='s1-tool-status'>S1 - Tool Status</h1><h2 id='s1f0-not-on-line'>S1F0 Not On Line</h2><h2 id='s1f1-are-you-there'>S1F1 Are You There?</h2>
-<p>&#39;&#39;&#39;C#
-    // S1F1R C# Receive message - add next line to setup
-    //sp is a SecsPort or SecsHost object reference
-    sp.MessageTypeAdd( 1, 1, new SecsMsgReceiveDelegate(recv_S1F1R));</p>
+<h1 id='s1-tool-status'>S1 - Tool Status</h1><h2 id='s1f0-not-on-line'>S1F0 Not On Line</h2><h2 id='s1f1-are-you-there'>S1F1 Are You There?</h2><div class="highlight"><pre class="highlight csharp tab-csharp"><code>    <span class="c1">// S1F1R C# Receive message - add next line to setup</span>
+    <span class="c1">//sp is a SecsPort or SecsHost object reference</span>
+    <span class="n">sp</span><span class="p">.</span><span class="nf">MessageTypeAdd</span><span class="p">(</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="nf">SecsMsgReceiveDelegate</span><span class="p">(</span><span class="n">recv_S1F1R</span><span class="p">));</span>
 
-<p>// receive method 
-void recv_S1F1R(object sender, int stream, int function, bool send_reply, int transID, string TSN_data, string header) {
-    //SecsPort sp = (SecsPort)sender;
-    //SecsHost sp = (SecsHost)sender;
-    bool ok=true;
-    while (ok) {   // break out of loop on error
-        // no data expected
-        if (send_reply) {
-            string reply; // TBD create reply
-            sp.SendReply(1, 2, transID, reply);
-            }
-        return; 
-        } // end while(ok)
-    } // end recv_S1F1R</p>
+<span class="c1">// receive method </span>
+<span class="k">void</span> <span class="nf">recv_S1F1R</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="kt">int</span> <span class="n">stream</span><span class="p">,</span> <span class="kt">int</span> <span class="n">function</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">send_reply</span><span class="p">,</span> <span class="kt">int</span> <span class="n">transID</span><span class="p">,</span> <span class="kt">string</span> <span class="n">TSN_data</span><span class="p">,</span> <span class="kt">string</span> <span class="n">header</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//SecsPort sp = (SecsPort)sender;</span>
+    <span class="c1">//SecsHost sp = (SecsHost)sender;</span>
+    <span class="kt">bool</span> <span class="n">ok</span><span class="p">=</span><span class="k">true</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">ok</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// break out of loop on error</span>
+        <span class="c1">// no data expected</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">send_reply</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">string</span> <span class="n">reply</span><span class="p">;</span> <span class="c1">// TBD create reply</span>
+            <span class="n">sp</span><span class="p">.</span><span class="nf">SendReply</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">transID</span><span class="p">,</span> <span class="n">reply</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="k">return</span><span class="p">;</span> 
+        <span class="p">}</span> <span class="c1">// end while(ok)</span>
+    <span class="p">}</span> <span class="c1">// end recv_S1F1R</span>
 
-<p>&#39;&#39;&#39;C++
-using namespace std;</p>
+<span class="err">```</span><span class="n">cpp</span>
+<span class="k">using</span> <span class="nn">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<p>// S1F1R C++ Receive message - add next line to setup
-    sp-&gt;messageTypeAdd( 1, 1, ::recvS1F1R);</p>
+    <span class="c1">// S1F1R C++ Receive message - add next line to setup</span>
+    <span class="n">sp</span><span class="p">-&gt;</span><span class="nf">messageTypeAdd</span><span class="p">(</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="p">::</span><span class="n">recvS1F1R</span><span class="p">);</span>
 
-<p>// receive method 
-void recvS1F1R(SecsEquipCpp sp, int stream, int function, bool sendReply, int transID, const char *TSN_data, const char *header, void *clientData) {
-    //change SecsEquipCpp above to SecsHostCpp for host receive
-    bool ok=true;
-    while (ok) {   // break out of loop on error
-        // no data expected
-        if (sendReply) {
-            string reply; // TBD create reply
-            sp-&gt;sendReply(1, 2, transID, reply.c_str());
-            }
-        return; 
-        } // end while(ok)
-    } // end recv_S1F1R</p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<span class="c1">// receive method </span>
+<span class="k">void</span> <span class="nf">recvS1F1R</span><span class="p">(</span><span class="n">SecsEquipCpp</span> <span class="n">sp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">stream</span><span class="p">,</span> <span class="kt">int</span> <span class="n">function</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">sendReply</span><span class="p">,</span> <span class="kt">int</span> <span class="n">transID</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="p">*</span><span class="n">TSN_data</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="p">*</span><span class="n">header</span><span class="p">,</span> <span class="k">void</span> <span class="p">*</span><span class="n">clientData</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//change SecsEquipCpp above to SecsHostCpp for host receive</span>
+    <span class="kt">bool</span> <span class="n">ok</span><span class="p">=</span><span class="k">true</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">ok</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// break out of loop on error</span>
+        <span class="c1">// no data expected</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sendReply</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">string</span> <span class="n">reply</span><span class="p">;</span> <span class="c1">// TBD create reply</span>
+            <span class="n">sp</span><span class="p">-&gt;</span><span class="nf">sendReply</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">transID</span><span class="p">,</span> <span class="n">reply</span><span class="p">.</span><span class="nf">c_str</span><span class="p">());</span>
+            <span class="p">}</span>
+        <span class="k">return</span><span class="p">;</span> 
+        <span class="p">}</span> <span class="c1">// end while(ok)</span>
+    <span class="p">}</span> <span class="c1">// end recv_S1F1R</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+<span class="err">#</span> <span class="n">Kittens</span>
+
+<span class="err">##</span> <span class="n">Get</span> <span class="n">All</span> <span class="n">Kittens</span>
+
+<span class="err">```</span><span class="n">ruby</span>
+<span class="n">require</span> <span class="err">'</span><span class="n">kittn</span><span class="err">'</span>
+
+<span class="n">api</span> <span class="p">=</span> <span class="n">Kittn</span><span class="p">::</span><span class="n">APIClient</span><span class="p">.</span><span class="n">authorize</span><span class="p">!(</span><span class="err">'</span><span class="n">meowmeowmeow</span><span class="err">'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="k">get</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
@@ -643,6 +641,8 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
                 <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
                 <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="csharp">csharp</a>
+                <a href="#" data-language-name="cpp">cpp</a>
           </div>
       </div>
     </div>
